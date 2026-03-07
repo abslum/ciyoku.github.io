@@ -15,6 +15,7 @@ import {
     createBookListItem,
     renderListMessage
 } from '../../shared/book-list-ui.js';
+import { createIosLoader } from '../../shared/loading-indicator.js';
 import {
     populateCategoryFilter
 } from '../../shared/category-filter-ui.js';
@@ -36,6 +37,8 @@ import { createSearchSession, fillMatchesUntil } from './lib/full-text-session.j
 import { splitBookPages } from '../../shared/book-pages.js';
 
 onDomReady(initSearchPage);
+
+const LOAD_MORE_LABEL = 'تحميل المزيد';
 
 async function yieldToBrowser() {
     await new Promise((resolve) => {
@@ -113,11 +116,27 @@ async function initSearchPage() {
         status.textContent = '';
     }
 
+    function setLoadMoreDefaultState() {
+        if (!loadMoreButton) return;
+        loadMoreButton.classList.remove('is-loading');
+        loadMoreButton.replaceChildren();
+        loadMoreButton.textContent = LOAD_MORE_LABEL;
+        loadMoreButton.removeAttribute('aria-label');
+    }
+
+    function setLoadMoreLoadingState() {
+        if (!loadMoreButton) return;
+        loadMoreButton.classList.add('is-loading');
+        loadMoreButton.replaceChildren();
+        loadMoreButton.appendChild(createIosLoader({ size: 'sm' }));
+        loadMoreButton.setAttribute('aria-label', 'Loading more');
+    }
+
     function resetLoadControls() {
         if (!loadControls || !loadMoreButton) return;
         loadControls.hidden = true;
         loadMoreButton.disabled = false;
-        loadMoreButton.textContent = 'تحميل المزيد';
+        setLoadMoreDefaultState();
     }
 
     function updateLoadControls() {
@@ -135,13 +154,18 @@ async function initSearchPage() {
         loadControls.hidden = !hasMoreToShow;
         if (!hasMoreToShow) {
             loadMoreButton.disabled = false;
-            loadMoreButton.textContent = 'تحميل المزيد';
+            setLoadMoreDefaultState();
             return;
         }
 
         const blockingLoad = session.loading && !hasBufferedResults;
         loadMoreButton.disabled = blockingLoad;
-        loadMoreButton.textContent = blockingLoad ? 'جاري التحميل...' : 'تحميل المزيد';
+        if (blockingLoad) {
+            setLoadMoreLoadingState();
+            return;
+        }
+
+        setLoadMoreDefaultState();
     }
 
     function cancelActiveSearch() {

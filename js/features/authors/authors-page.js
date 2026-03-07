@@ -2,6 +2,7 @@ import { fetchBooksList } from '../../core/books-repo.js';
 import { buildAuthorPageUrl, groupBooksByAuthor } from './authors-data.js';
 import { toArabicIndicNumber } from '../../shared/number-format.js';
 import { onDomReady } from '../../shared/bootstrap.js';
+import { createIosLoader } from '../../shared/loading-indicator.js';
 
 onDomReady(initAuthorsPage);
 
@@ -26,14 +27,19 @@ function createAuthorListItem(index, authorRow) {
     return item;
 }
 
+function renderLoadingSummary(summary) {
+    summary.hidden = false;
+    summary.className = 'status-ok status-loading';
+    summary.replaceChildren(createIosLoader({ size: 'sm' }));
+}
+
 async function initAuthorsPage() {
     const summary = document.getElementById('authorsSummary');
     const list = document.getElementById('authorsList');
     if (!summary || !list) return;
 
     try {
-        summary.className = 'status-ok';
-        summary.textContent = 'جاري تحميل المؤلفين...';
+        renderLoadingSummary(summary);
 
         const books = await fetchBooksList();
         const authors = groupBooksByAuthor(books);

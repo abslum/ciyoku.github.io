@@ -2,6 +2,7 @@ import { fetchBooksList } from '../../core/books-repo.js';
 import { buildCategoryPageUrl, groupBooksByCategory } from './categories-data.js';
 import { toArabicIndicNumber } from '../../shared/number-format.js';
 import { onDomReady } from '../../shared/bootstrap.js';
+import { createIosLoader } from '../../shared/loading-indicator.js';
 
 onDomReady(initCategoriesPage);
 
@@ -26,21 +27,26 @@ function createCategorySection(index, category) {
     return section;
 }
 
+function renderLoadingSummary(summary) {
+    summary.hidden = false;
+    summary.className = 'status-ok status-loading';
+    summary.replaceChildren(createIosLoader({ size: 'sm' }));
+}
+
 async function initCategoriesPage() {
     const root = document.getElementById('categoriesRoot');
     const summary = document.getElementById('categoriesSummary');
     if (!root || !summary) return;
 
     try {
-        summary.hidden = false;
-        summary.className = 'status-ok';
-        summary.textContent = 'جاري تحميل التصنيفات...';
+        renderLoadingSummary(summary);
 
         const books = await fetchBooksList();
         const categories = groupBooksByCategory(books);
 
         if (!categories.length) {
             root.replaceChildren();
+            summary.className = 'status-ok';
             summary.textContent = 'لا توجد تصنيفات متاحة حاليًا.';
             return;
         }
@@ -52,6 +58,7 @@ async function initCategoriesPage() {
         root.replaceChildren(fragment);
 
         const countLabel = toArabicIndicNumber(categories.length);
+        summary.className = 'status-ok';
         summary.textContent = `عدد التصنيفات المتاحة: ${countLabel}`;
     } catch (error) {
         root.replaceChildren();

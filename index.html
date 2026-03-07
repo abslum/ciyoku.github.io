@@ -41,10 +41,14 @@
             </div>
         </section>
 
-        <div id="booksSummary" class="status-ok" role="status" aria-live="polite">جاري تحميل العناوين...</div>
+        <div id="booksSummary" class="status-ok status-loading" role="status" aria-live="polite" aria-label="Loading">
+            <span class="ios-loader ios-loader-sm" aria-hidden="true"></span>
+        </div>
 
         <ul class="book-list" id="bookList">
-            <li class="book-list-loading">جاري تحميل العناوين...</li>
+            <li class="book-list-loading" aria-label="Loading">
+                <span class="ios-loader ios-loader-md" aria-hidden="true"></span>
+            </li>
         </ul>
     </main>
 

@@ -30,7 +30,9 @@
     </header>
 
     <main class="container content-page" id="mainContent">
-        <div id="categoriesSummary" class="status-ok" role="status" aria-live="polite">جاري تحميل التصنيفات...</div>
+        <div id="categoriesSummary" class="status-ok status-loading" role="status" aria-live="polite" aria-label="Loading">
+            <span class="ios-loader ios-loader-sm" aria-hidden="true"></span>
+        </div>
 
         <div id="categoriesRoot" class="category-layout"></div>
     </main>

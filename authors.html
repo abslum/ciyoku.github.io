@@ -29,7 +29,9 @@
     </header>
 
     <main class="container content-page" id="mainContent">
-        <div id="authorsSummary" class="status-ok" role="status" aria-live="polite">جاري تحميل المؤلفين...</div>
+        <div id="authorsSummary" class="status-ok status-loading" role="status" aria-live="polite" aria-label="Loading">
+            <span class="ios-loader ios-loader-sm" aria-hidden="true"></span>
+        </div>
 
         <ul id="authorsList" class="simple-list authors-list"></ul>
     </main>

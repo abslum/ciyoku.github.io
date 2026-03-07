@@ -195,34 +195,11 @@
 }
 
 .loading {
-    text-align: center;
-    margin-top: 4rem;
-    font-size: var(--text-lg);
-    line-height: 1.7;
-    color: #838893;
-}
-
-.loading-spinner {
-    width: 1.6rem;
-    height: 1.6rem;
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-    display: block;
-    margin: 0 auto 0.6rem;
-    transform-origin: center;
-    animation: readerSpin 1s linear infinite;
-}
-
-.loading-spinner circle {
-    opacity: 0.3;
-}
-
-@keyframes readerSpin {
-    to {
-        transform: rotate(360deg);
-    }
+    min-height: clamp(12rem, 35vh, 20rem);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .reader-error {

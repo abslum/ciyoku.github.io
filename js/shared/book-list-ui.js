@@ -1,3 +1,5 @@
+import { createIosLoader } from './loading-indicator.js';
+
 export function createBookListItem({
     bookId,
     title,
@@ -32,6 +34,12 @@ export function renderListMessage(container, message, tone = 'error') {
     container.replaceChildren();
     const item = document.createElement('li');
     item.className = cssClass;
-    item.textContent = message;
+
+    if (tone === 'loading') {
+        item.appendChild(createIosLoader({ size: 'md' }));
+    } else {
+        item.textContent = message;
+    }
+
     container.appendChild(item);
 }

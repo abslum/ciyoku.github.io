@@ -1,4 +1,5 @@
 import { setCanonicalUrl } from '../../shared/seo.js';
+import { createLoadingIndicator } from '../../shared/loading-indicator.js';
 
 const CHOOSE_BOOK_TITLE = 'اختر كتابًا';
 const CHOOSE_BOOK_MESSAGE = 'لم يتم اختيار كتاب.';
@@ -23,32 +24,15 @@ export function renderReaderError(message) {
     content.appendChild(error);
 }
 
-export function renderReaderLoading(message = 'جاري تحميل الكتاب...') {
+export function renderReaderLoading() {
     const content = getReaderContent();
     content.replaceChildren();
 
-    const loading = document.createElement('div');
-    loading.className = 'loading';
-
-    const spinner = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    spinner.classList.add('loading-spinner');
-    spinner.setAttribute('viewBox', '0 0 24 24');
-    spinner.setAttribute('aria-hidden', 'true');
-    spinner.setAttribute('focusable', 'false');
-
-    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    circle.setAttribute('cx', '12');
-    circle.setAttribute('cy', '12');
-    circle.setAttribute('r', '9');
-
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d', 'M21 12a9 9 0 0 0-9-9');
-
-    spinner.append(circle, path);
-
-    const text = document.createElement('p');
-    text.textContent = message;
-    loading.append(spinner, text);
+    const loading = createLoadingIndicator({
+        className: 'loading',
+        size: 'lg',
+        accent: true
+    });
     content.appendChild(loading);
 }
 

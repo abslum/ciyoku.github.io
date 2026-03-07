@@ -200,6 +200,13 @@
     color: var(--danger-color);
 }
 
+.book-list-loading {
+    min-height: 4.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .search-result-location {
     color: var(--text-muted);
     font-size: var(--text-xs);
