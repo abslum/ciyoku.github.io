@@ -458,7 +458,6 @@
         width: min(88vw, 320px);
         top: var(--header-height);
         padding: 1rem;
-        box-shadow: -12px 0 28px rgba(0, 0, 0, 0.45);
     }
 
     .reader-content,
@@ -487,7 +486,6 @@
         width: min(92vw, 360px);
         top: var(--header-height);
         padding: 1rem;
-        box-shadow: -12px 0 28px rgba(0, 0, 0, 0.45);
     }
 
     .search-results {

@@ -3,7 +3,7 @@ const VALID_THEMES = new Set(['light', 'dark']);
 const DEFAULT_THEME = 'dark';
 const THEME_META_COLORS = Object.freeze({
     dark: '#08090b',
-    light: '#f6f5f0'
+    light: '#f7f3ea'
 });
 
 function getStoredTheme() {

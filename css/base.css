@@ -78,29 +78,29 @@
 }
 
 :root[data-theme='light'] {
-    --bg-color: #f6f5f0;
-    --bg-elevated: #ffffff;
-    --sidebar-bg: #eef1f5;
-    --text-color: #1c1f24;
-    --text-muted: #5f6773;
-    --text-strong: #0f1216;
-    --text-soft: #4c5562;
+    --bg-color: #f7f3ea;
+    --bg-elevated: #fffaf2;
+    --sidebar-bg: #efe9dd;
+    --text-color: #1e1d1b;
+    --text-muted: #6a6257;
+    --text-strong: #151412;
+    --text-soft: #5b5348;
     --accent-color: #2f7adf;
     --accent-weak: rgba(47, 122, 223, 0.14);
     --danger-color: #c74242;
-    --hover-color: #e3e8f0;
-    --border-color: #d4d9e1;
-    --border-subtle: rgba(16, 24, 40, 0.12);
-    --surface-1: #ffffff;
-    --surface-2: #f5f7fb;
+    --hover-color: #e9e2d6;
+    --border-color: #d8d1c4;
+    --border-subtle: rgba(66, 58, 48, 0.16);
+    --surface-1: #fffaf2;
+    --surface-2: #f6f0e4;
     --highlight-bg: rgba(255, 204, 92, 0.6);
     --highlight-text: #1b1b1b;
-    --scrollbar-thumb: #b6bcc6;
-    --scrollbar-thumb-hover: #a2a9b5;
+    --scrollbar-thumb: #c9c1b3;
+    --scrollbar-thumb-hover: #b8b0a3;
     --skip-bg: #111;
     --skip-text: #fff;
-    --loader-track: rgba(33, 37, 41, 0.16);
-    --loader-fill: rgba(33, 37, 41, 0.65);
+    --loader-track: rgba(66, 58, 48, 0.16);
+    --loader-fill: rgba(66, 58, 48, 0.58);
     --notice-bg: rgba(199, 66, 66, 0.12);
     --notice-text: #9f2f2f;
     color-scheme: light;
